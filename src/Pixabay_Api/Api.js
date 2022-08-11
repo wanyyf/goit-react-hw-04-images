@@ -8,7 +8,12 @@ const dataApi = ({ page, photosName }) => {
     orientation: 'horizontal',
     per_page: 12,
   });
-  return fetch(`https://pixabay.com/api/?${searchParams}`);
+  return fetch(`https://pixabay.com/api/?${searchParams}`).then(response => {
+    if (response.ok) {
+      return response.json();
+    }
+    return Promise.reject(new Error(`!!Error!!`));
+  });
 };
 
 const api = { dataApi };

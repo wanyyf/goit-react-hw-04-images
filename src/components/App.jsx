@@ -33,12 +33,6 @@ export function App() {
     setLoading(true);
     await api
       .dataApi({ page, photosName })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        return Promise.reject(new Error(`!!Error!!`));
-      })
       .then(data => setPhotos(prevState => [...prevState, ...data.hits]))
       .catch(error => console.log(error))
       .finally(() => setLoading(false));
